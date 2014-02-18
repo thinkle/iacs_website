@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta charset="UTF-8">
+    <style type="text/css">
+      .schedule {font-size:small;font-family:arial}
+      .hidden {display: none}
+      .hidden_box {color:#222;font-size:small;border-top 1px solid #222;display:none}
+      .hidden_box p {margin-top: 0px; margin-bottom: 5px;}
+      .time {width:80px}
+      .summary {width:180px;margin-left:5px}
+      .calendar_container {margin-left:0px;margin-right:0px;margin-top:0px;margin-bottom:0px;font-weight:bold;width:265px;background-color:#e5ecf9;padding-left:1em;padding-right:1em;padding-top:.2em;padding-bottom:.2em}
+      .day_container {font-weight:bold}
+      .event2 {background-color: #eee; border-top: 1px #cde}
+      .event1 {background-color: #fff; border-top: 1px #cde}
+      .day {margin-top:0px;margin-bottom:5px;font-size:small}
+      td {vertical-align: top}
+      .more_button {font-size: xx-small; font-style: italic; text-align: right; background-color: #e5ecf9; width: 265px; padding-top:0.2em;padding-bottom:0.2em;padding:right-1em;padding-left:1em;}
+</style>
+<script type="text/javascript">
+      function show (divid, morebuttonid) {
+      document.getElementById(divid).style.display='block';
+      document.getElementById(morebuttonid).style.display='none';
+      }
+      function hide (divid, morebuttonid) {
+      document.getElementById(morebuttonid).style.display = 'block';
+      document.getElementById(divid).style.display='none';
+      }
+      function toggle (divid) {
+      el = document.getElementById(divid);
+      if (el.style.display == 'block') { el.style.display = 'none'}
+      else {el.style.display = 'block'}
+      }
+    </script>
+<body>
+    <div class="calendar_container">  
