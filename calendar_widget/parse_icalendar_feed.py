@@ -2,6 +2,9 @@ from icalendar import Calendar, Event
 import datetime
 from dateutil import tz
 import urllib
+import gdoc_writer
+import tempfile
+
 
 #fi = file('basic.ics','rb')
 #str = fi.read(); fi.close()
@@ -39,7 +42,11 @@ def get_events_near_today (c, before=5, after=21):
 
 def get_events_near_today_from_uri (uri, color='red',**kwargs):
     fi = urllib.urlopen(uri)
-    c = Calendar.from_ical(fi.read())
+    try:
+        c = Calendar.from_ical(fi.read())
+    except:
+        print 'Error reading: ',uri
+        raise
     events = get_events_near_today(c,**kwargs)
     for e in events:
         e.color = color
@@ -66,6 +73,11 @@ def format_calendar (events, hide_before=True, hide_after_rows=10):
         if not events_by_days.has_key(start_date):
                 events_by_days[start_date] = []
         events_by_days[start_date].append(e)
+        today = start_date.today()
+        if (end_date - start_date).days > 1 and end_date > today and start_date < today:
+                if not events_by_days.has_key(today):
+                        events_by_days[today] = []
+                events_by_days[today].append(e)                      
     html = ''
     days = events_by_days.keys()
     days.sort()
@@ -160,10 +172,15 @@ def write_feeds (fn, feeds_and_colors):
         events = events + get_events_near_today_from_uri(f,color=color)
     write_events(fn,events)
 
+def write_feeds_to_gdoc (gdoc_id, feeds_and_colors):
+    tmpfile = tempfile.mktemp()
+    write_feeds(tmpfile,feeds_and_colors)
+    gdoc_writer.update_resource_from_file(gdoc_id,tmpfile)
+    
 if __name__ == '__main__':
     write_feeds('/tmp/test.html',
-                [('http://www.google.com/calendar/ical/innovationcharter.org_4f5nt4qijeoblj11aj2q7hibdc%40group.calendar.google.com/public/basic.ics','red'),
-                 ('http://www.google.com/calendar/ical/innovationcharter.org_f18ij5fhojmf19fnjtlkcs0gvo%40group.calendar.google.com/public/basic.ics','green'),
+                [('http://www.google.com/calendar/ical/innovationcharter.org_4f5nt4qijeoblj11aj2q7hibdc%40group.calendar.google.com/public/basic.ics',COLOR1),
+                 #('http://www.google.com/calendar/ical/innovationcharter.org_f18ij5fhojmf19fnjtlkcs0gvo%40group.calendar.google.com/public/basic.ics',COLOR2),
                  ]
                  )
 
