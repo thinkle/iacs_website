@@ -24,15 +24,18 @@
       function show (divid, morebuttonid) {
       document.getElementById(divid).style.display='block';
       document.getElementById(morebuttonid).style.display='none';
+      return false; // prevent default      
       }
       function hide (divid, morebuttonid) {
       document.getElementById(morebuttonid).style.display = 'block';
       document.getElementById(divid).style.display='none';
+      return false; // prevent default      
       }
       function toggle (divid) {
       el = document.getElementById(divid);
       if (el.style.display == 'block') { el.style.display = 'none'}
       else {el.style.display = 'block'}
+      return false; // prevent default      
       }
     </script>
 <body>
