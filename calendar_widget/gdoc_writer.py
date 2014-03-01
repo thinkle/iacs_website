@@ -1,9 +1,10 @@
 #resource_id = '0B-fhMzqaF6ywUTdNbVdmNGVmdG8'
-#front_html = '0B-fhMzqaF6ywb1dKalJaTkthUWM'
+front_html = '0B-fhMzqaF6ywb1dKalJaTkthUWM'
 import gdata.docs, gdata.docs.client, gdata
 
+pw = file('pw','r').read()
 client = gdata.docs.client.DocsClient()
-client.ClientLogin('website@innovationcharter.org','',None)
+client.ClientLogin('website@innovationcharter.org',pw,None)
 
 def update_resource_from_file (resource_id, filename, mimetype='text/html'):
     resource = client.get_resource_by_id(resource_id)
@@ -13,3 +14,4 @@ def update_resource_from_file (resource_id, filename, mimetype='text/html'):
 
 if __name__ == '__main__':
     update_resource_from_file(front_html,'front.html')
+    
