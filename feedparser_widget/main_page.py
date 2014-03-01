@@ -20,7 +20,8 @@ ms_sports_feeds = [
     Feed(url='http://www.innovationcharter.org/middle-school/athletics/mssportsannouncements/ms-cheerleading/posts.xml',title_prefix='MS Cheer:'),
     Feed(url='http://www.innovationcharter.org/middle-school/athletics/mssportsannouncements/ms-track-and-field/posts.xml',title_prefix='MS Track & Field:'),
     Feed(url='http://www.innovationcharter.org/middle-school/athletics/mssportsannouncements/ms-softball/posts.xml',title_prefix='MS Softball:'),
-    Feed(url='http://www.innovationcharter.org/middle-school/athletics/mssportsannouncements/ms-baseball/posts.xml',title_prefix='MS Baseball:'),    
+    Feed(url='http://www.innovationcharter.org/middle-school/athletics/mssportsannouncements/ms-baseball/posts.xml',title_prefix='MS Baseball:'),
+    Feed(url='https://sites.google.com/a/innovationcharter.org/new-website/middle-school/athletics/mssportsannouncements/ms-dance-announcements/posts.xml',title_prefix='Dance:'),
     
     ]
 hs_sports_feeds = [
@@ -42,6 +43,10 @@ hs_sports_feeds = [
          title_prefix='HS Girls Varsity Soccer:'),
     Feed(url='http://www.innovationcharter.org/high-school/athletics/high-school-athletics-announcements/posts.xml',
          title_prefix='HS:'),
+    Feed(url='https://sites.google.com/a/innovationcharter.org/new-website/middle-school/athletics/mssportsannouncements/ms-dance-announcements/posts.xml',title_prefix='Dance:'),
+    Feed(url='https://sites.google.com/a/innovationcharter.org/new-website/high-school/athletics/high-school-athletics-announcements/hs-softball-announcements/posts.xml',title_prefix='HS Softball:'),
+    Feed(url='https://sites.google.com/a/innovationcharter.org/new-website/high-school/athletics/high-school-athletics-announcements/hs-softball-announcements/posts.xml',title_prefix='HS Softball:'),
+    Feed(url='https://sites.google.com/a/innovationcharter.org/new-website/high-school/athletics/high-school-athletics-announcements/hs-track-and-field-announcements/posts.xml',title_prefix='HS Track:'),
     ]
 
 data = [
