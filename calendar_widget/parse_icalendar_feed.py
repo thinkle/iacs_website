@@ -14,12 +14,18 @@ def remove_leading_zero (s):
     if s[0]=='0': return s[1:]
     else: return s
 
-def format_time_property (p):
+def format_time_property (p, short=False):
     dt = p.dt
     if hasattr(dt,'date'): # If it's a time...
-        return dt.astimezone(tz.tzlocal()).strftime('%A %B %d, %I:%M%p')
+        if short:
+            return dt.astimezone(tz.tzlocal()).strftime('%m/%d %I:%M%p')
+        else:
+            return dt.astimezone(tz.tzlocal()).strftime('%A, %B %d, %I:%M%p')
     else:
-        return dt.strftime('%A %B %d')
+        if short:
+            return dt.strftime('%m/%d')
+        else:
+            return dt.strftime('%A, %B %d')
         
 def get_events_near_today (c, before=5, after=21):
     keepers = []
@@ -83,7 +89,7 @@ def format_calendar (events, hide_before=True, hide_after_rows=10):
     days.sort()
     row_count = 0; past_max_rows = False; end_hide_before = False
     if hide_before == True:
-            html += '<a class="more_button"x href="#" onclick="javascript:toggle(\'before\')">Earlier...</a>'
+            html += '<a class="more_button"x href="#_" onclick="javascript:toggle(\'before\')">Earlier...</a>'
             html += '<div class="hidden" id="before">'
     for d in days:
         if (hide_before and not end_hide_before and d >= d.today()):
@@ -94,7 +100,7 @@ def format_calendar (events, hide_before=True, hide_after_rows=10):
             html+= '''<div class="hidden" id="hidden_after">'''
             print 'Passed max rows!'
             past_max_rows = True
-        html += '<div class="day_container"><h3 class="day">' + d.strftime('%B %d') + '</h3>\n'
+        html += '<div class="day_container"><h3 class="day">' + d.strftime('%A, %B %d') + '</h3>\n'
         row_count += 1
         html += '<table class="schedule">'
         alternator = True
@@ -119,27 +125,29 @@ def format_calendar (events, hide_before=True, hide_after_rows=10):
                     html += remove_leading_zero(e.start_date.strftime('%m/%d')) + '-' + remove_leading_zero(e.end_date.strftime('%m/%d'))
             html += '</td>' # End time
             html += '<td class="summary" style="color:%s">'%e.color
-            html += '<a style="text-decoration:none;color:%s" href="#" onclick="javascript:toggle(\'%s\')">'%(e.color,e.get('uid'))
+            html += '<a style="text-decoration:none;color:%s" href="#_" onclick="javascript:toggle(\'%s\')">'%(e.color,e.get('uid'))
             html += e.get('summary')
             html += '</a>'
             html += '<div class="hidden_box" id="' + e.get('uid') + '">'
             # Hidden material...
             html += '''
             <p class="start">Start: %(start)s</p>
-            <p class="end">End: %(end)s</p>
-            <p class="desc">Description: %(description)s</p>
-            <p class="location">Location: %(location)s</p>
+            <p class="end">End: %(end)s</p>'''%{
+                'start':format_time_property(e.get('dtstart')),
+                'end':format_time_property(e.get('dtend')),
+                }
+            if e.get('description'):
+                html += '<p class="desc">Description: %(description)s</p>'%{'description':''+e.get('description')}
+            if e.get('location'):
+                html += '<p class="location">Location: %(location)s</p>'%{'location':''+e.get('location')}
+            html += '''
             <p class="created">Created: %(created)s</p>
             <p class="lastmod">Last Modified: %(lastmod)s</p>
             <p class="status">Status: %(status)s</p>
             '''%{
                 'status':e.get('status'),
-                'start':format_time_property(e.get('dtstart')),
-                'end':format_time_property(e.get('dtend')),
-                'created':format_time_property(e.get('created')),
-                'lastmod':format_time_property(e.get('last-modified')),
-                'description':''+e.get('description'),
-                'location':''+e.get('location'),
+                'created':format_time_property(e.get('created'),True),
+                'lastmod':format_time_property(e.get('last-modified'),True),
                 }
             html += '</div>' # End hidden material
             html += '</td>'
@@ -147,7 +155,7 @@ def format_calendar (events, hide_before=True, hide_after_rows=10):
         html += '</table>\n</div>\n'
     if past_max_rows:
         html+= '''</div>
-        <a class="more_button" href="#" onclick="javascript:toggle('hidden_after')">More...</a>'''
+        <a class="more_button" href="#_" onclick="javascript:toggle('hidden_after')">More...</a>'''
     return html
 
 def suck_file (fn):

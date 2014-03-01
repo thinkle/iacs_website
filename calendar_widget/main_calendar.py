@@ -4,9 +4,13 @@ COLOR1 = MAIN_COLOR = 'rgb(158,0,50)' # reddish
 COLOR2 = MS_SPORTS_COLOR = 'rgb(108,0,158)' # purple
 COLOR3 = HS_SPORTS_COLOR = 'rgb(0,158,29)' # green
 COLOR4 = 'rgb(158,108,0)' # brown
-#COLOR5 =
+COLOR5 = '#003fa' # Blue Tone
+COLOR6 = '#67129c' # Purple variant...
+COLOR7 = '#474C57' # Greyish/Tannish tone
+COLOR8 = '#4782FF' # Lighter blue
 
-COLORS = [COLOR1,COLOR2,COLOR3,COLOR4]
+COLORS = [COLOR1,COLOR2,COLOR3,COLOR4,
+          COLOR5,COLOR6,COLOR7,COLOR8]
 
 ALL_SCHOOL_CALENDARS = [
     'http://www.google.com/calendar/ical/innovationcharter.org_4f5nt4qijeoblj11aj2q7hibdc%40group.calendar.google.com/public/basic.ics', # 'IACS All School Public Calendar'
@@ -30,24 +34,26 @@ MS_SPORTS_CALENDARS = [
     ]
 
 HS_SPORTS_CALENDARS = [
-    'http://www.google.com/calendar/ical/innovationcharter.org_l9c9t9ep2e9piaecf9p23qq33o%40group.calendar.google.com/public/basic.ics',
-    # V Boys Soccer color=#668CD9
-    'http://www.google.com/calendar/ical/innovationcharter.org_eu82h40tl4135js0ubvi11rci4%40group.calendar.google.com/public/basic.ics',
-    #color=#D96666, V Girls Soccer
-    'http://www.google.com/calendar/ical/innovationcharter.org_40ptgt6b4m9q7kl4dronrpq1rg%40group.calendar.google.com/public/basic.ics',
-    #color=#E0C240, High &amp; Middle School Track - MEET Schedule
-    'http://www.google.com/calendar/ical/innovationcharter.org_s6h841d8b6g3gkuiqtqievuvnc%40group.calendar.google.com/public/basic.ics',
-    #color=#4CB052, HS Boys JV Basketball
-    'http://www.google.com/calendar/ical/innovationcharter.org_p9tpifvtoaghvufdho81v642fk%40group.calendar.google.com/public/basic.ics',
-    #color=#E6804D, HS Boys Varsity Basketball
-    'http://www.google.com/calendar/ical/innovationcharter.org_71lk8jhipqffq1ngga2jlon6m0%40group.calendar.google.com/public/basic.ics',
-    #color=#8C66D9, HS Cheerleading
-    'http://www.google.com/calendar/ical/innovationcharter.org_6ddkakvq3b9khj62c4nrda1834%40group.calendar.google.com/public/basic.ics',
-    #color=#C4A883, HS Girls JV Basketball
-    'http://www.google.com/calendar/ical/innovationcharter.org_q0rlftcbppcstvnv71i1fp0s2g%40group.calendar.google.com/public/basic.ics',
-    #color=#65AD89, HS Girls Varsity Basketball
-    'http://www.google.com/calendar/ical/innovationcharter.org_vr6fspiu1in9sj3uio02c9hcd0%40group.calendar.google.com/public/basic.ics',
-    #color=#85AAA5, Indoor Track
+    ## FALL SPORTS ##
+
+    'http://www.google.com/calendar/ical/innovationcharter.org_l9c9t9ep2e9piaecf9p23qq33o%40group.calendar.google.com/public/basic.ics', # V Boys Soccer color=#668CD9
+    'http://www.google.com/calendar/ical/innovationcharter.org_eu82h40tl4135js0ubvi11rci4%40group.calendar.google.com/public/basic.ics',    #color=#D96666, V Girls Soccer
+    'http://www.google.com/calendar/ical/innovationcharter.org_40ptgt6b4m9q7kl4dronrpq1rg%40group.calendar.google.com/public/basic.ics',    #color=#E0C240, High &amp; Middle School Track - MEET Schedule
+
+
+    ## WINTER SPORTS ##
+    
+    'http://www.google.com/calendar/ical/innovationcharter.org_s6h841d8b6g3gkuiqtqievuvnc%40group.calendar.google.com/public/basic.ics',    #color=#4CB052, HS Boys JV Basketball    
+    'http://www.google.com/calendar/ical/innovationcharter.org_p9tpifvtoaghvufdho81v642fk%40group.calendar.google.com/public/basic.ics',    #color=#E6804D, HS Boys Varsity Basketball
+    'http://www.google.com/calendar/ical/innovationcharter.org_71lk8jhipqffq1ngga2jlon6m0%40group.calendar.google.com/public/basic.ics',    #color=#8C66D9, HS Cheerleading
+    'http://www.google.com/calendar/ical/innovationcharter.org_6ddkakvq3b9khj62c4nrda1834%40group.calendar.google.com/public/basic.ics',    #color=#C4A883, HS Girls JV Basketball
+    'http://www.google.com/calendar/ical/innovationcharter.org_q0rlftcbppcstvnv71i1fp0s2g%40group.calendar.google.com/public/basic.ics',    #color=#65AD89, HS Girls Varsity Basketball
+    'http://www.google.com/calendar/ical/innovationcharter.org_vr6fspiu1in9sj3uio02c9hcd0%40group.calendar.google.com/public/basic.ics',    #color=#85AAA5, Indoor Track
+
+    ## WINTER SPORTS
+    
+    'http://www.google.com/calendar/ical/innovationcharter.org_38bvd9v1tokmv05b13nfs8i728%40group.calendar.google.com/public/basic.ics', #HS Softball
+    'http://www.google.com/calendar/ical/innovationcharter.org_j4uabivvhse8bpgvp93sf6s340%40group.calendar.google.com/public/basic.ics', #HS Track & Field
     ]
 
 # For main page...
