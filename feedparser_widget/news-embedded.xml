@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Module>
+
+<ModulePrefs title="Embedded Tabs" directory_title="Tabbed iframes" description="Tabbed pages displaying embedded iframes." title_url="" author="Tom Hinkle" author_email="tmhinkle@gmail.com,thinkle@innovationcharter.org" screenshot="" thumbnail="" height="360" scrolling="false" singleton="false" category="news" category2="communication">
+
+  <Require feature="dynamic-height"/>
+
+  <Require feature="setprefs"/>
+
+  <Require feature="tabs"/>
+
+</ModulePrefs>
+
+
+<UserPref name="entries" display_name="# of Entries:" datatype="enum" default_value="6">
+
+  <EnumValue value="3"/>
+
+  <EnumValue value="4"/>
+
+  <EnumValue value="5"/>
+
+  <EnumValue value="6"/>
+
+  <EnumValue value="7"/>
+
+  <EnumValue value="8"/>
+
+  <EnumValue value="9"/>
+
+  <EnumValue value="10"/>
+
+  <EnumValue value="11"/>
+
+  <EnumValue value="12"/>
+
+  <EnumValue value="13"/>
+
+  <EnumValue value="14"/>
+
+  <EnumValue value="15"/>
+
+</UserPref>
+
+<UserPref name="tab_1" display_name="Label 1"
+      default_value="NEWS"
+      />
+<UserPref name="feed_1" display_name="Feed 1"
+
+      />
+
+<UserPref name="tab_2" display_name="Label 2"
+      default_value="SPORTS"
+      />
+      
+<UserPref name="feed_2" display_name="Feed 2"
+
+      />
+
+<UserPref name="tab_3" display_name="Label 3 (Leave blank if you don't want a tab)"/>
+<UserPref name="feed_3" display_name="Feed 3"/>
+
+<UserPref name="tab_4" display_name="Label 4"/>
+<UserPref name="feed_4" display_name="Feed 4"/>
+
+<UserPref name="tab_5" display_name="Label 5"/>
+<UserPref name="feed_5" display_name="Feed 5"/>
+
+
+<UserPref name="selectedTab" datatype="hidden"/>
+
+<Content type="html"><![CDATA[
+
+
+
+  <style type="text/css">
+  
+  .tablib_unselected {
+background-color: #0033a0 !important;
+color:#ffffff !important;
+border-radius:5px 5px 0px 0px !important;
+padding:10px;
+}
+
+  .tablib_selected {
+background-color: #ffffff !important;
+color:#c6093b !important;
+border-radius:5px 5px 0px 0px !important;
+padding:10px;
+}
+
+  .tablib_table__MODULE_ID__ { font-size: 18px; }
+
+
+
+  .statusLabel {
+
+    font-size:12px;
+
+    font-style:italic;
+
+    padding-top:10px;
+
+    text-align:center;
+
+  }
+
+  .feedHeader {
+
+    padding-top:5px;
+
+    font-size:18px;
+
+  }
+
+  .feedList {
+
+    font-size:16px;
+    font-weight:bold;
+
+    margin:10px 0px 0px 0px;
+
+    padding:0px 3px 5px 3px;
+
+
+
+  }
+
+  .feedList li {
+
+    margin-top:5px;
+
+    padding:0px;
+
+  }
+
+  .feedList div.entrySummary {
+
+    font-size:16px;
+    color:#333333;
+    font-weight:normal !important;
+
+  }
+
+  .feedlist div.entryTimestamp {
+
+    font-size:10px;
+
+    font-style:italic;
+
+    color:#676767;
+
+  }
+  
+  a {
+  color: #0033a0 !important;
+  }
+
+  </style>
+
+
+
+  <script>
+
+  // Global variables
+
+  var prefs = new _IG_Prefs(__MODULE_ID__);
+
+  var tabs = new _IG_Tabs(__MODULE_ID__);
+
+  
+
+  /**
+
+   * Initialize tabs when page loads.
+
+   * Create tab for each userpref only if userpref is not empty.
+
+   */
+
+  function init() {
+
+    var prefs = new gadgets.Prefs();
+    // Ugly hardcoding -- sorry world.
+    var feeds = [[prefs.getString("feed_1"),prefs.getString("tab_1")],
+		 [prefs.getString("feed_2"),prefs.getString("tab_2")],
+		 [prefs.getString("feed_3"),prefs.getString("tab_3")],
+		 [prefs.getString("feed_4"),prefs.getString("tab_4")],
+		 [prefs.getString("feed_5"),prefs.getString("tab_5")],
+		 [prefs.getString("feed_6"),prefs.getString("tab_6")]
+		 ];
+
+    for (var i in feeds) {
+	feed = feeds[i][0];
+	tab = feeds[i][1];
+	if (feed != "") {
+	    tab_id = tabs.addTab(_trim(tab))
+	    var container = _gel(tab_id);
+	    container.innerHTML = '<iframe height="800px" width="293px" seamless="True"  src="' + feed + '"></iframe>';
+	    }
+    }
+
+    _IG_AdjustIFrameHeight();
+    };
+
+  // Set onload event handler to call init()
+
+  _IG_RegisterOnloadHandler(init);
+
+  </script>
+
+]]>
+
+</Content>
+
+</Module>
+
