@@ -1,5 +1,6 @@
 import parse_feeds
 import gdoc_writer
+import os.path
 from parse_feeds import Feed
 ms_feeds = [        Feed(url='http://www.innovationcharter.org/middle-school/academic-program/yearbook/announcement/posts.xml',title_prefix='MS Yearbook:'),
         Feed(url='http://www.innovationcharter.org/middle-school/ms-updates/posts.xml',title_prefix='MS:'),
@@ -62,13 +63,19 @@ data = [
     ('hs_sports.html',  '0B-fhMzqaF6ywVDV1eDdwYVdMOFE',hs_sports_feeds,{'shown_initially':3,'total_limit':8}),    
     ]
 
+main_updater = os.path.exists('am_main')
+BACKUP_AFTER = 7
 
 for filename,resourceid,feeds,entry_kwargs in data:
-    print 'Parsing feeds for ',filename
-    out = parse_feeds.entries_to_html(
-        parse_feeds.process_feeds(feeds),**entry_kwargs
-        )
-    ofi = file(filename,'wb')
-    ofi.write(out.encode('utf-8'))
-    ofi.close()
-    gdoc_writer.update_resource_from_file(resourceid, filename, mimetype='text/html')
+
+    if (main_updater or not gdoc_writer.updated_within_last(resourceid,BACKUP_AFTER)):
+        print 'Parsing feeds for ',filename
+        out = parse_feeds.entries_to_html(
+            parse_feeds.process_feeds(feeds),**entry_kwargs
+            )
+        ofi = file(filename,'wb')
+        ofi.write(out.encode('utf-8'))
+        ofi.close()
+        gdoc_writer.update_resource_from_file(resourceid, filename, mimetype='text/html')
+    else:
+        print resourceid,"already being updated from elsewhere..."

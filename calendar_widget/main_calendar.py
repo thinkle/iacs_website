@@ -1,4 +1,4 @@
-import parse_icalendar_feed
+import parse_icalendar_feed, gdoc_writer, os.path
 
 COLOR1 = MAIN_COLOR = 'rgb(158,0,50)' # reddish
 COLOR2 = MS_SPORTS_COLOR = 'rgb(108,0,158)' # purple
@@ -63,10 +63,6 @@ for feed in HS_SPORTS_CALENDARS:
     if feed not in MS_SPORTS_CALENDARS:
         main_feeds.append((f,HS_SPORTS_COLOR))
 
-parse_icalendar_feed.write_feeds_to_gdoc(
-    '0B-fhMzqaF6ywRFVjNVVDQlVPU1U',
-    main_feeds)
-
 CUR_COL = -1
 def alternate_color ():
     global CUR_COL
@@ -78,10 +74,35 @@ def alternate_color ():
 ms_athletics_feeds = [(f,alternate_color()) for f in MS_SPORTS_CALENDARS]
 hs_athletic_feeds = [(f,alternate_color()) for f in HS_SPORTS_CALENDARS]
 
-parse_icalendar_feed.write_feeds_to_gdoc(
-    '0B-fhMzqaF6ywaF9YWFlDVUxucEU',
-    ms_athletics_feeds)
-parse_icalendar_feed.write_feeds_to_gdoc(
-    '0B-fhMzqaF6ywTVRKMktlaWZOejQ',
-    hs_athletic_feeds)
+# TOUCH A FILE NAMED 'am_main' in this directory to make us the main updater
+main_updater = os.path.exists('am_main')
+BACKUP_AFTER = 7 # Number of minutes after which we should assume
+                 # the main updater has failed and start doing it ourselves. 
+
+if (main_updater or
+    not gdoc_writer.updated_within_last('0B-fhMzqaF6ywRFVjNVVDQlVPU1U',BACKUP_AFTER)
+    ):
+    parse_icalendar_feed.write_feeds_to_gdoc(
+        '0B-fhMzqaF6ywRFVjNVVDQlVPU1U',
+        main_feeds)
+else:
+    print "Already updated"
+    
+if (main_updater or
+    not gdoc_writer.updated_within_last('0B-fhMzqaF6ywaF9YWFlDVUxucEU',BACKUP_AFTER)
+    ):
+    parse_icalendar_feed.write_feeds_to_gdoc(
+        '0B-fhMzqaF6ywaF9YWFlDVUxucEU',
+        ms_athletics_feeds)
+else:
+    print "Already updated"
+
+if (main_updater or
+    not gdoc_writer.updated_within_last('0B-fhMzqaF6ywTVRKMktlaWZOejQ',BACKUP_AFTER)
+    ):
+    parse_icalendar_feed.write_feeds_to_gdoc(
+        '0B-fhMzqaF6ywTVRKMktlaWZOejQ',
+        hs_athletic_feeds)
+else:
+    print "Already updated"
 
