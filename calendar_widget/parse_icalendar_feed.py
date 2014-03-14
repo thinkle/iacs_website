@@ -90,15 +90,14 @@ def format_calendar (events, hide_before=True, hide_after_rows=10):
     row_count = 0; past_max_rows = False; end_hide_before = False
     if hide_before == True:
             html += '<a class="more_button"x href="#_" onclick="javascript:toggle(\'before\')">Earlier...</a>'
-            html += '<div class="hidden" id="before">'
+            html += '<div class="hidden" id="before"> <!-- Before -->'
     for d in days:
-        if (hide_before and not end_hide_before and d >= d.today()):
-            html += '</div>' # End hidden container...
+        if ((hide_before and not end_hide_before) and d >= d.today()):
+            html += '</div> <!-- End Before -->' # End hidden container...
             row_count = 0
             end_hide_before = True
-        if not past_max_rows and (row_count > hide_after_rows):
-            html+= '''<div class="hidden" id="hidden_after">'''
-            print 'Passed max rows!'
+        if end_hide_before and not past_max_rows and (row_count > hide_after_rows):
+            html+= '''<div class="hidden" id="hidden_after"> <!-- Start after -->'''
             past_max_rows = True
         html += '<div class="day_container"><h3 class="day">' + d.strftime('%A, %B %d') + '</h3>\n'
         row_count += 1
