@@ -61,7 +61,7 @@ main_feeds = [(f,MAIN_COLOR) for f in ALL_SCHOOL_CALENDARS] + [(f,MS_SPORTS_COLO
 # Add HS manually to prevent repeats...
 for feed in HS_SPORTS_CALENDARS:
     if feed not in MS_SPORTS_CALENDARS:
-        main_feeds.append((f,HS_SPORTS_COLOR))
+        main_feeds.append((feed,HS_SPORTS_COLOR))
 
 CUR_COL = -1
 def alternate_color ():
