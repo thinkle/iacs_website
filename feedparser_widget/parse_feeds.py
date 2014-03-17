@@ -227,9 +227,15 @@ def trim_at_line_length_broken (text,lines=5,chars_per_line=45):
             text = text[:-i]
     return close_open_tags(text)
             
-def process_feeds (feeds, total_limit=10):
+def process_feeds (feeds, total_limit=10, remove_dups=True):
         all_entries = []
+        urls_parsed = []
         for f in feeds:
+            if f.url in urls_parsed and remove_dups:
+                print 'Skipping duplicate: ',f.url
+                continue
+            else:
+                urls_parsed.append(f.url)
             f.parse()
             all_entries.extend(f.entries)
         all_entries.sort(key=lambda x: x.published_parsed, reverse=True)
