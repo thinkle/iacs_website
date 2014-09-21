@@ -82,6 +82,7 @@ BACKUP_AFTER = 7 # Number of minutes after which we should assume
 if (main_updater or
     not gdoc_writer.updated_within_last('0B-fhMzqaF6ywRFVjNVVDQlVPU1U',BACKUP_AFTER)
     ):
+    print "Updating Main calendar"
     parse_icalendar_feed.write_feeds_to_gdoc(
         '0B-fhMzqaF6ywRFVjNVVDQlVPU1U',
         main_feeds)
@@ -91,6 +92,7 @@ else:
 if (main_updater or
     not gdoc_writer.updated_within_last('0B-fhMzqaF6ywaF9YWFlDVUxucEU',BACKUP_AFTER)
     ):
+    print 'Updating MS Athletic Calendar'
     parse_icalendar_feed.write_feeds_to_gdoc(
         '0B-fhMzqaF6ywaF9YWFlDVUxucEU',
         ms_athletics_feeds)
@@ -100,6 +102,7 @@ else:
 if (main_updater or
     not gdoc_writer.updated_within_last('0B-fhMzqaF6ywTVRKMktlaWZOejQ',BACKUP_AFTER)
     ):
+    print 'Updating HS Athletic Calendar'    
     parse_icalendar_feed.write_feeds_to_gdoc(
         '0B-fhMzqaF6ywTVRKMktlaWZOejQ',
         hs_athletic_feeds)
