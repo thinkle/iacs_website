@@ -116,10 +116,11 @@ def format_calendar (events, hide_before=True, hide_after_rows=10):
                  #   html += '-' + remove_leading_zero(e.end.astimezone(tz.tzlocal()).strftime('%I:%M%p'))
             elif e.start_date != e.end_date:
                 # If the dates differ, we'll specify in the time section, semi-awkwardly...
-                print 'Interesting -- more than one day for this event'
-                print e.start_date,e.end_date,e.get('summary')
+                #print 'Interesting -- more than one day for this event'
+                #print e.start_date,e.end_date,e.get('summary')
                 if (e.end_date - e.start_date).days == 1:
-                    print 'Ignoring -- only 1 day difference; appears to be an all-day, timeless event'
+                    if False: # Don't print debug statement - this is really common
+                        print 'Ignoring -- only 1 day difference; appears to be an all-day, timeless event'
                 else:
                     html += remove_leading_zero(e.start_date.strftime('%m/%d')) + '-' + remove_leading_zero(e.end_date.strftime('%m/%d'))
             html += '</td>' # End time
