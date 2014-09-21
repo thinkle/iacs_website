@@ -26,13 +26,7 @@ ms_sports_feeds = [
     Feed(url='http://www.innovationcharter.org/middle-school/athletics/mssportsannouncements/ms-cross-country-announcements/posts.xml',title_prefix='MS XC:'),
     Feed(url='http://www.innovationcharter.org/middle-school/athletics/mssportsannouncements/ms-boys-soccer-announcements/posts.xml',title_prefix='MS Boys Soccer:'),
     Feed(url='http://www.innovationcharter.org/middle-school/athletics/mssportsannouncements/ms-girls-soccer-announcements/posts.xml',title_prefix='MS Girls Soccer:'),
-    Feed(url='http://www.innovationcharter.org/middle-school/athletics/mssportsannouncements/ms-volleyball-announcements/posts.xml',title_prefix='MS Volleyball:'),
-    Feed(url='http://www.innovationcharter.org/middle-school/athletics/mssportsannouncements/indoor-track-and-field/posts.xml',title_prefix='MS Indoor Track:'),
-    Feed(url='http://www.innovationcharter.org/middle-school/athletics/mssportsannouncements/ms-cheerleading/posts.xml',title_prefix='MS Cheer:'),
-    Feed(url='http://www.innovationcharter.org/middle-school/athletics/mssportsannouncements/ms-track-and-field/posts.xml',title_prefix='MS Track & Field:'),
-    Feed(url='http://www.innovationcharter.org/middle-school/athletics/mssportsannouncements/ms-softball/posts.xml',title_prefix='MS Softball:'),
-    Feed(url='http://www.innovationcharter.org/middle-school/athletics/mssportsannouncements/ms-baseball/posts.xml',title_prefix='MS Baseball:'),
-    Feed(url='https://sites.google.com/a/innovationcharter.org/new-website/middle-school/athletics/mssportsannouncements/ms-dance-announcements/posts.xml',title_prefix='Dance:'),
+
     
     ]
 
@@ -65,7 +59,13 @@ hs_sports_feeds = [
 
 data = [
     # Temp HTML file, Resource ID for google drive upload, feed, args to html generator
-    ('front.html','0B-fhMzqaF6ywb1dKalJaTkthUWM',ms_feeds + hs_feeds + all_feeds + [
+    ('front.html','0B-fhMzqaF6ywb1dKalJaTkthUWM',
+     #ms_feeds + hs_feeds +
+     all_feeds + [
+         # MS Feeds (we do them by hand here to add limits to numbesr...
+        Feed(url='http://www.innovationcharter.org/middle-school/academic-program/yearbook/announcement/posts.xml',title_prefix='MS Yearbook:',max_entries=1),
+        Feed(url='http://www.innovationcharter.org/middle-school/ms-updates/posts.xml',title_prefix='MS:',max_entries=2),
+        Feed(url='http://www.innovationcharter.org/high-school/hs-updates/posts.xml',title_prefix='HS:',max_entries=2),
         Feed(url='http://www.innovationcharter.org/news/press/all-school-updates/posts.xml',title_prefix=''),
         Feed(url='http://www.innovationcharter.org/news/press/board-updates/posts.xml',title_prefix='Board:',
              max_days=6),
