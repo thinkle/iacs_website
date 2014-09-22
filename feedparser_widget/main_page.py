@@ -79,6 +79,7 @@ data = [
     ('hs_sports.html',  '0B-fhMzqaF6ywVDV1eDdwYVdMOFE',hs_sports_main_feed + hs_sports_feeds,{'shown_initially':3,'total_limit':8}),
     ('hs_sports_main.html', '0B-fhMzqaF6ywMHhfTXY2YTVpV0U',hs_sports_main_feed,{'shown_initially':3,'total_limit':8}),
     ('ms_sports_main.html', '0B-fhMzqaF6ywckxaV1pWRU5obHM',ms_sports_main_feed,{'shown_initially':3,'total_limit':8}),    
+    ('board.html','0B-fhMzqaF6ywU25PcmRyemNYQmM',[Feed(url='http://www.innovationcharter.org/news/press/board-updates/posts.xml',title_prefix='Board:')], {'shown_initially':4,'total_limit':8}),
     ]
 
 main_updater = os.path.exists('am_main')
