@@ -19,6 +19,8 @@ ms_sports_main_feed = [    Feed(url='http://www.innovationcharter.org/middle-sch
     ]
 
 ms_sports_feeds = [
+    Feed(url='http://www.innovationcharter.org/high-school/athletics/high-school-athletics-announcements/hs-wrestling/posts.xml',
+         title_prefix='Wrestling:'),    
     Feed(url='http://www.innovationcharter.org/middle-school/athletics/mssportsannouncements/ms-varsity-boys-basketball/posts.xml',title_prefix='MS Varsity Boys BBall:'),
     Feed(url='http://www.innovationcharter.org/middle-school/athletics/mssportsannouncements/ms-jv-boys-basketball/posts.xml',title_prefix='MS JV Boys BBall:'),
     Feed(url='http://www.innovationcharter.org/middle-school/athletics/mssportsannouncements/ms-varsity-girls-basketball/posts.xml',title_prefix='MS Varsity Girls BBall:'),
@@ -36,6 +38,8 @@ hs_sports_main_feed = [
     ]
 
 hs_sports_feeds = [
+    Feed(url='http://www.innovationcharter.org/high-school/athletics/high-school-athletics-announcements/hs-wrestling/posts.xml',
+         title_prefix='Wrestling:'),
     Feed(url='http://www.innovationcharter.org/high-school/athletics/high-school-athletics-announcements/hs-cheerleading/posts.xml',
          title_prefix='HS Cheer:'),
     Feed(url='http://www.innovationcharter.org/high-school/athletics/high-school-athletics-announcements/hs-jv-boys-basketball/posts.xml',
