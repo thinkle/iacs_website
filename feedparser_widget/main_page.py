@@ -63,14 +63,13 @@ data = [
      #ms_feeds + hs_feeds +
      all_feeds + [
          # MS Feeds (we do them by hand here to add limits to numbesr...
-        Feed(url='http://www.innovationcharter.org/middle-school/academic-program/yearbook/announcement/posts.xml',title_prefix='MS Yearbook:',max_entries=1),
-        Feed(url='http://www.innovationcharter.org/middle-school/ms-updates/posts.xml',title_prefix='MS:',max_entries=2),
-        Feed(url='http://www.innovationcharter.org/high-school/hs-updates/posts.xml',title_prefix='HS:',max_entries=2),
+        #Feed(url='http://www.innovationcharter.org/middle-school/ms-updates/posts.xml',title_prefix='MS:',max_entries=2),
+        #Feed(url='http://www.innovationcharter.org/high-school/hs-updates/posts.xml',title_prefix='HS:',max_entries=2),
         Feed(url='http://www.innovationcharter.org/news/press/all-school-updates/posts.xml',title_prefix=''),
-        Feed(url='http://www.innovationcharter.org/news/press/board-updates/posts.xml',title_prefix='Board:',
-             max_days=6),
-        ], {'shown_initially':6,'total_limit':12}),
-    ('ms.html','0B-fhMzqaF6ywNHR6a09nS0VJV2M',ms_feeds + all_feeds,
+        #Feed(url='http://www.innovationcharter.org/news/press/board-updates/posts.xml',title_prefix='Board:',
+         #max_days=6),
+        ], {'shown_initially':2,'total_limit':4}),
+    ('ms.html','0B-fhMzqaF6ywNHR6a09nS0VJV2M',ms_feeds + all_feeds +[Feed(url='http://www.innovationcharter.org/middle-school/academic-program/yearbook/announcement/posts.xml',title_prefix='MS Yearbook:',max_entries=1)],
      {'shown_initially':4,'total_limit':8}),
     ('hs.html','0B-fhMzqaF6ywU0VGTnZCN2ZteHM',hs_feeds + all_feeds,
      {'shown_initially':4,'total_limit':8}),
