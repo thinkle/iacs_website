@@ -1,4 +1,5 @@
-import parse_icalendar_feed, gdoc_writer, os.path
+import parse_icalendar_feed, os.path
+import gdoc_writer
 
 COLOR1 = MAIN_COLOR = 'rgb(158,0,50)' # reddish
 COLOR2 = MS_SPORTS_COLOR = 'rgb(108,0,158)' # purple
@@ -83,6 +84,9 @@ if (main_updater or
     not gdoc_writer.updated_within_last('0B-fhMzqaF6ywRFVjNVVDQlVPU1U',BACKUP_AFTER)
     ):
     print "Updating Main calendar"
+    #parse_icalendar_feed.write_feeds_to_file(
+    #    'Main-Calendar-0B-fhMzqaF6ywRFVjNVVDQlVPU1U.html',
+    #    main_feeds)
     parse_icalendar_feed.write_feeds_to_gdoc(
         '0B-fhMzqaF6ywRFVjNVVDQlVPU1U',
         main_feeds)
@@ -93,6 +97,9 @@ if (main_updater or
     not gdoc_writer.updated_within_last('0B-fhMzqaF6ywaF9YWFlDVUxucEU',BACKUP_AFTER)
     ):
     print 'Updating MS Athletic Calendar'
+    #parse_icalendar_feed.write_feeds_to_file(
+    #    'MS-Athletic-0B-fhMzqaF6ywaF9YWFlDVUxucEU.html',
+    #    ms_athletics_feeds)
     parse_icalendar_feed.write_feeds_to_gdoc(
         '0B-fhMzqaF6ywaF9YWFlDVUxucEU',
         ms_athletics_feeds)
@@ -102,7 +109,10 @@ else:
 if (main_updater or
     not gdoc_writer.updated_within_last('0B-fhMzqaF6ywTVRKMktlaWZOejQ',BACKUP_AFTER)
     ):
-    print 'Updating HS Athletic Calendar'    
+    print 'Updating HS Athletic Calendar'
+    #parse_icalendar_feed.write_feeds_to_file(
+    #    'HS-Athletic-0B-fhMzqaF6ywTVRKMktlaWZOejQ.html',
+    #    hs_athletic_feeds)    
     parse_icalendar_feed.write_feeds_to_gdoc(
         '0B-fhMzqaF6ywTVRKMktlaWZOejQ',
         hs_athletic_feeds)

@@ -1,4 +1,7 @@
 import parse_feeds
+#if 'everything is broken':
+#    print "ACK EVERYTHING IS BROKEN"
+#else:
 import gdoc_writer
 import os.path
 from parse_feeds import Feed
@@ -72,7 +75,7 @@ data = [
         Feed(url='http://www.innovationcharter.org/news/press/all-school-updates/posts.xml',title_prefix=''),
         #Feed(url='http://www.innovationcharter.org/news/press/board-updates/posts.xml',title_prefix='Board:',
          #max_days=6),
-        ], {'shown_initially':2,'total_limit':4}),
+        ], {'shown_initially':4,'total_limit':8}),
     ('ms.html','0B-fhMzqaF6ywNHR6a09nS0VJV2M',ms_feeds + all_feeds +[Feed(url='http://www.innovationcharter.org/middle-school/academic-program/yearbook/announcement/posts.xml',title_prefix='MS Yearbook:',max_entries=1)],
      {'shown_initially':4,'total_limit':8}),
     ('hs.html','0B-fhMzqaF6ywU0VGTnZCN2ZteHM',hs_feeds + all_feeds,
@@ -89,8 +92,7 @@ main_updater = os.path.exists('am_main')
 BACKUP_AFTER = 7
 
 for filename,resourceid,feeds,entry_kwargs in data:
-
-    if (main_updater or not gdoc_writer.updated_within_last(resourceid,BACKUP_AFTER)):
+    if False: # If things are broken and we just need the files
         print 'Parsing feeds for ',filename
         out = parse_feeds.entries_to_html(
             parse_feeds.process_feeds(feeds),**entry_kwargs
@@ -98,6 +100,16 @@ for filename,resourceid,feeds,entry_kwargs in data:
         ofi = file(filename,'wb')
         ofi.write(out.encode('utf-8'))
         ofi.close()
-        gdoc_writer.update_resource_from_file(resourceid, filename, mimetype='text/html')
     else:
-        print resourceid,"already being updated from elsewhere..."
+        # Do the normal thing
+        if (main_updater or not gdoc_writer.updated_within_last(resourceid,BACKUP_AFTER)):
+            print 'Parsing feeds for ',filename
+            out = parse_feeds.entries_to_html(
+                parse_feeds.process_feeds(feeds),**entry_kwargs
+            )
+            ofi = file(filename,'wb')
+            ofi.write(out.encode('utf-8'))
+            ofi.close()
+            gdoc_writer.update_resource_from_file(resourceid, filename, mimetype='text/html')
+        else:
+            print resourceid,"already being updated from elsewhere..."

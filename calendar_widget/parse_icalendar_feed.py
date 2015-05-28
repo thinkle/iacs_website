@@ -2,7 +2,7 @@ from icalendar import Calendar, Event
 import datetime
 from dateutil import tz
 import urllib
-import gdoc_writer
+import gdoc_writer 
 import tempfile
 
 
@@ -184,6 +184,12 @@ def write_feeds_to_gdoc (gdoc_id, feeds_and_colors):
     tmpfile = tempfile.mktemp()
     write_feeds(tmpfile,feeds_and_colors)
     gdoc_writer.update_resource_from_file(gdoc_id,tmpfile)
+
+def write_feeds_to_file (fname, feeds_and_colors):
+    f = file(fname, 'w')
+    write_feeds(fname,feeds_and_colors)
+    f.close()
+    
     
 if __name__ == '__main__':
     write_feeds('/tmp/test.html',
